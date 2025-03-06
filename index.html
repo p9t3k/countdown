@@ -17,7 +17,7 @@
             margin: 0;
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
-            color: inherit; /* Usa il colore di default della pagina */
+            color: #000000; /* Nero di default per visibilità */
         }
         
         h1 {
@@ -36,6 +36,7 @@
             transform: translateX(-50%);
             width: 40px;
             height: 1px;
+            background-color: rgba(0, 0, 0, 0.3); /* Linea nera di default */
         }
         
         .countdown {
@@ -76,20 +77,10 @@
         /* Dark mode */
         @media (prefers-color-scheme: dark) {
             body {
-                color: #ffffff; /* Bianco puro in dark mode */
+                color: #ffffff; /* Bianco in dark mode */
             }
             h1::after {
                 background-color: rgba(255, 255, 255, 0.3); /* Linea bianca trasparente */
-            }
-        }
-        
-        /* Light mode */
-        @media (prefers-color-scheme: light) {
-            body {
-                color: #000000; /* Nero puro in light mode */
-            }
-            h1::after {
-                background-color: rgba(0, 0, 0, 0.3); /* Linea nera trasparente */
             }
         }
         
