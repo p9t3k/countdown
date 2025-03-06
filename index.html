@@ -17,6 +17,7 @@
             margin: 0;
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
+            color: inherit; /* Usa il colore di default della pagina */
         }
         
         h1 {
@@ -60,6 +61,7 @@
             font-size: 4rem;
             font-weight: 700;
             line-height: 1;
+            opacity: 0.7; /* Grigio chiaro o scuro in base al tema */
         }
         
         .label {
@@ -68,37 +70,26 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 300;
+            opacity: 0.7;
         }
         
-        /* Dark mode (default di Notion se scuro) */
+        /* Dark mode */
         @media (prefers-color-scheme: dark) {
             body {
-                color: white; /* Testo bianco in dark mode */
+                color: #ffffff; /* Bianco puro in dark mode */
             }
             h1::after {
                 background-color: rgba(255, 255, 255, 0.3); /* Linea bianca trasparente */
-            }
-            .seconds {
-                opacity: 0.7; /* Grigio chiaro per i secondi */
-            }
-            .label {
-                opacity: 0.7; /* Etichette leggermente trasparenti */
             }
         }
         
         /* Light mode */
         @media (prefers-color-scheme: light) {
             body {
-                color: black; /* Testo nero in light mode */
+                color: #000000; /* Nero puro in light mode */
             }
             h1::after {
                 background-color: rgba(0, 0, 0, 0.3); /* Linea nera trasparente */
-            }
-            .seconds {
-                opacity: 0.7; /* Grigio scuro per i secondi */
-            }
-            .label {
-                opacity: 0.7; /* Etichette leggermente trasparenti */
             }
         }
         
