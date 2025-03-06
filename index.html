@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Bull Cycle Countdown</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+        
+        body {
+            background-color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .time-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .time {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .seconds {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            opacity: 0.7;
+        }
+        
+        .label {
+            font-size: 0.75rem;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+            
+            .countdown {
+                gap: 25px;
+            }
+            
+            .time {
+                font-size: 2.8rem;
+            }
+            
+            .seconds {
+                font-size: 2.8rem;
+            }
+            
+            .label {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Next Bull Cycle</h1>
+    <div class="countdown">
+        <div class="time-section">
+            <div id="years" class="time">00</div>
+            <div class="label">Years</div>
+        </div>
+        <div class="time-section">
+            <div id="months" class="time">00</div>
+            <div class="label">Months</div>
+        </div>
+        <div class="time-section">
+            <div id="days" class="time">00</div>
+            <div class="label">Days</div>
+        </div>
+        <div class="time-section">
+            <div id="hours" class="time">00</div>
+            <div class="label">Hours</div>
+        </div>
+        <div class="time-section">
+            <div id="minutes" class="time">00</div>
+            <div class="label">Minutes</div>
+        </div>
+        <div class="time-section">
+            <div id="seconds" class="seconds">00</div>
+            <div class="label">Seconds</div>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('January 1, 2028 00:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            
+            if (difference <= 0) {
+                document.getElementById('years').textContent = '00';
+                document.getElementById('months').textContent = '00';
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            let remainingTime = difference;
+            const msPerYear = 1000 * 60 * 60 * 24 * 365.25;
+            const years = Math.floor(remainingTime / msPerYear);
+            remainingTime -= years * msPerYear;
+            const msPerMonth = msPerYear / 12;
+            const months = Math.floor(remainingTime / msPerMonth);
+            remainingTime -= months * msPerMonth;
+            const msPerDay = 1000 * 60 * 60 * 24;
+            const days = Math.floor(remainingTime / msPerDay);
+            remainingTime -= days * msPerDay;
+            const msPerHour = 1000 * 60 * 60;
+            const hours = Math.floor(remainingTime / msPerHour);
+            remainingTime -= hours * msPerHour;
+            const msPerMinute = 1000 * 60;
+            const minutes = Math.floor(remainingTime / msPerMinute);
+            remainingTime -= minutes * msPerMinute;
+            const seconds = Math.floor(remainingTime / 1000);
+            
+            document.getElementById('years').textContent = padZero(years);
+            document.getElementById('months').textContent = padZero(months);
+            document.getElementById('days').textContent = padZero(days);
+            document.getElementById('hours').textContent = padZero(hours);
+            document.getElementById('minutes').textContent = padZero(minutes);
+            document.getElementById('seconds').textContent = padZero(seconds);
+        }
+        
+        function padZero(num) {
+            return num < 10 ? `0${num}` : num;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
