@@ -8,7 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
         
         body {
-            background-color: #333333;
+            background-color: transparent; /* Sfondo trasparente */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,7 +17,6 @@
             margin: 0;
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
-            color: white;
         }
         
         h1 {
@@ -36,7 +35,6 @@
             transform: translateX(-50%);
             width: 40px;
             height: 1px;
-            background-color: rgba(255, 255, 255, 0.3);
         }
         
         .countdown {
@@ -62,7 +60,6 @@
             font-size: 4rem;
             font-weight: 700;
             line-height: 1;
-            opacity: 0.7;
         }
         
         .label {
@@ -71,7 +68,38 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 300;
-            opacity: 0.7;
+        }
+        
+        /* Dark mode (default di Notion se scuro) */
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: white; /* Testo bianco in dark mode */
+            }
+            h1::after {
+                background-color: rgba(255, 255, 255, 0.3); /* Linea bianca trasparente */
+            }
+            .seconds {
+                opacity: 0.7; /* Grigio chiaro per i secondi */
+            }
+            .label {
+                opacity: 0.7; /* Etichette leggermente trasparenti */
+            }
+        }
+        
+        /* Light mode */
+        @media (prefers-color-scheme: light) {
+            body {
+                color: black; /* Testo nero in light mode */
+            }
+            h1::after {
+                background-color: rgba(0, 0, 0, 0.3); /* Linea nera trasparente */
+            }
+            .seconds {
+                opacity: 0.7; /* Grigio scuro per i secondi */
+            }
+            .label {
+                opacity: 0.7; /* Etichette leggermente trasparenti */
+            }
         }
         
         @media (max-width: 768px) {
